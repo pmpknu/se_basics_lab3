@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <h:outputStylesheet name="stylesheets/main.css" />
+    <h:outputStylesheet name="stylesheets/clock.css" />
+    <h:outputScript name="clock.js" library="scripts" target="head"/>
+    <title>Лабораторная работа 2</title>
+</h:head>
+<h:body>
+    <svg id="clock" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" stroke="black" stroke-width="3" fill="white" />
+        <line x1="100" y1="100" x2="100" y2="20" stroke="black" stroke-width="3" id="hourHand" />
+        <line x1="100" y1="100" x2="100" y2="10" stroke="black" stroke-width="2" id="minuteHand" />
+        <line x1="100" y1="100" x2="100" y2="5" stroke="red" stroke-width="1" id="secondHand" />
+        <circle cx="100" cy="100" r="2" fill="black" />
+    </svg>
+    <h:form id="form">
+        <h:commandLink action="mainPage" value="Перейти на основную страницу" id="main" />
+    </h:form>
+</h:body>
+</html>
