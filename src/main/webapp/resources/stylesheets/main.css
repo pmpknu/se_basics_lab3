@@ -2,23 +2,44 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .header {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 18px;
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
     margin-top: 20px;
+    font-family: "monospace";
 }
 
 #graph {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
 #myForm {
     text-align: center;
+    margin: 20px auto;
+    width: 80%;
 }
 
 .table {
+    margin: 20px auto;
+    width: 80%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
@@ -36,12 +57,14 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .form-column {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding: 20px;
 }
 
 .form-column-with-margin {
@@ -53,4 +76,89 @@ body {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
+}
+
+input[type="text"], select, .p-spinner, .p-inputnumber {
+    width: 100%;
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.button-container, #myForm {
+    text-align: center;
+}
+
+.custom-button {
+    background-color: var(--surface-800);
+    color: var(--primary-color-text);
+}
+
+.custom-spinner .ui-spinner-button {
+    background-color: var(--surface-800) !important;
+    color: var(--primary-color-text) !important;
+}
+
+.custom-spinner .ui-spinner-button:hover {
+    background-color: var(--surface-700) !important; /* Немного светлее для hover эффекта */
+}
+
+/* Стилизация p:spinner для соответствия размерам стрелочек PrimeFaces */
+.custom-spinner .ui-spinner {
+    width: auto; /* Автоматический размер для обертки, чтобы подстроиться под содержимое */
+}
+
+.custom-spinner .ui-spinner-input {
+    width: calc(100% - 2.5em); /* Рассчитываем ширину, вычитая размер кнопок */
+    height: 2.25em; /* Высота, соответствующая высоте кнопок */
+    padding: 0.5em; /* Добавляем немного внутренних отступов */
+    border: 1px solid #ccc; /* Граница для поля ввода */
+    border-radius: 0.25em; /* Скругление углов для поля ввода */
+    line-height: 1.25em; /* Высота линИИ ТЕКСТА */
+    text-align: center; /* Центрирование текста */
+
+}
+
+.custom-spinner .ui-spinner-button {
+    width: 1.25em; /* Задаем фиксированную ширину для кнопок */
+    height: 1.25em; /* Задаем фиксированную высоту для кнопок */
+    margin: 0; /* Убираем внешние отступы */
+    border-radius: 0; /* Убираем скругление углов для кнопок */
+}
+
+.custom-spinner .ui-spinner-up,
+.custom-spinner .ui-spinner-down {
+    font-size: 0.75em; /* Уменьшаем размер иконки стрелки */
+}
+
+/* Применение цвета surface-800 */
+.custom-spinner .ui-spinner-button {
+    background-color: var(--surface-800) !important;
+    border-color: var(--surface-800) !important;
+}
+
+.custom-spinner .ui-spinner-button:hover {
+    background-color: var(--surface-700) !important; /* Светлее для эффекта наведения */
+}
+
+.custom-spinner .ui-spinner-up,
+.custom-spinner .ui-spinner-down {
+    color: var(--primary-color-text) !important;
+}
+
+/* Стилизация кнопок отправки и удаления */
+.custom-button {
+    background-color: var(--surface-800) !important; /* Фоновый цвет кнопок */
+    color: var(--primary-color-text) !important; /* Цвет текста кнопок */
+    border: none; /* Убираем границу */
+    padding: 0.5em 1em; /* Внутренние отступы */
+    border-radius: 0.25em; /* Скругление углов */
+    font-size: 1em; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.2s; /* Плавное изменение фона при наведении */
+}
+
+.custom-button:hover {
+    background-color: var(--surface-700) !important; /* Цвет фона кнопки при наведении */
 }

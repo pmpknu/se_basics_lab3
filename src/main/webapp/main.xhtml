@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,11 +15,6 @@
     <h:panelGroup class="header">
         <div class="title">
             <i>Горляков Д. П., P3215, Вариант 123123</i>
-        </div>
-        <div class="navigation">
-            <h:form id="formhead">
-                <h:commandLink action="indexPage" value="Перейти на начальную страницу" id="indexhead" />
-            </h:form>
         </div>
     </h:panelGroup>
     <div id="graph">
@@ -85,7 +79,7 @@
         <div class="form-container">
             <div class="form-column">
                 <h:outputText value="Выбор x от -3 до 3:"/>
-                <p:spinner stepFactor="1" min="-3" max="3" value="#{pointBean.x}" />
+                <p:spinner styleClass="custom-spinner" stepFactor="1" min="-3" max="3" value="#{pointBean.x}" />
             </div>
 
             <div class="form-column form-column-with-margin">
@@ -122,9 +116,9 @@
             </div>
         </div>
 
-        <p:commandButton value="Отправить" ajax="true" action="#{dataBean.addToTable(pointBean)}"
+        <p:commandButton styleClass="custom-button" value="Отправить" ajax="true" action="#{dataBean.addToTable(pointBean)}"
                         update="table redrawPointsGraph"/>
-        <p:commandButton value="Удалить" ajax="true" action="#{dataBean.deletePoints()}"
+        <p:commandButton styleClass="custom-button" value="Удалить" ajax="true" action="#{dataBean.deletePoints()}"
                          update="table redrawPointsGraph"/>
 
     </h:form>
