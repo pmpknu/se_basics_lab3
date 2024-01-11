@@ -1,11 +1,10 @@
-package web.database
+package web.beans
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.faces.context.FacesContext
 import jakarta.inject.Named
 import web.model.PointModel
-import web.beans.PointBean
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -16,7 +15,6 @@ import java.util.*
 @ApplicationScoped
 class DataBean {
     var conn: Connection? = null
-    //private var points: MutableList<PointModel> = mutableListOf()
 
     init {
         conn = try {
