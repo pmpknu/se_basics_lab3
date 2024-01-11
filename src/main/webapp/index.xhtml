@@ -7,18 +7,25 @@
     <h:outputStylesheet name="stylesheets/main.css" />
     <h:outputStylesheet name="stylesheets/clock.css" />
     <h:outputScript name="clock.js" library="scripts" target="head"/>
-    <title>Лабораторная работа 2</title>
+    <title>lab3</title>
 </h:head>
 <h:body>
-    <svg id="clock" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="90" stroke="black" stroke-width="3" fill="white" />
-        <line x1="100" y1="100" x2="100" y2="20" stroke="black" stroke-width="3" id="hourHand" />
-        <line x1="100" y1="100" x2="100" y2="10" stroke="black" stroke-width="2" id="minuteHand" />
-        <line x1="100" y1="100" x2="100" y2="5" stroke="red" stroke-width="1" id="secondHand" />
-        <circle cx="100" cy="100" r="2" fill="black" />
+    <h:panelGroup class="header">
+        <div class="title">
+            <i>Горляков Д. П., P3215, Вариант 123123</i>
+        </div>
+    </h:panelGroup>
+
+    <svg id="clock" width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="400" cy="400" r="360" stroke="black" stroke-width="12" fill="white" />
+        <line x1="400" y1="400" x2="400" y2="180" stroke="black" stroke-width="12" id="hourHand" />
+        <line x1="400" y1="400" x2="400" y2="120" stroke="black" stroke-width="8" id="minuteHand" />
+        <line x1="400" y1="400" x2="400" y2="100" stroke="red" stroke-width="4" id="secondHand" />
+        <circle cx="400" cy="400" r="8" fill="black" />
     </svg>
+
     <h:form id="form">
-        <h:commandLink action="mainPage" value="Перейти на основную страницу" id="main" />
+        <h:commandLink action="mainPage" value="Проверка попадания точки в область" id="main" />
     </h:form>
 </h:body>
 </html>

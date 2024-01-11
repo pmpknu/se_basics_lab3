@@ -2,61 +2,63 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #e6e9f0, #eef1f5);
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 .header {
     text-align: center;
-    font-size: 18px;
-    background-color: #444;
+    font-size: 24px;
+    background-color: #757575;
     color: #fff;
-    padding: 10px;
-    margin-top: 20px;
-    font-family: "monospace";
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 #graph {
     width: 500px;
     height: 500px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 30px 0;
     text-align: center;
 }
 
-#myForm {
-    text-align: center;
-    margin: 20px auto;
-    width: 80%;
-}
-
-.table {
-    margin: 20px auto;
-    width: 80%;
+#myForm, .table {
+    text-align: left;
+    margin: 30px auto;
+    width: 90%;
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
 }
 
 .result-yes {
-    color: green;
+    color: #4caf50;
     font-weight: bold;
 }
 
 .result-no {
-    color: red;
+    color: #f44336;
     font-weight: bold;
 }
 
 .form-container {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    justify-content: space-around;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -67,98 +69,106 @@ body {
     padding: 20px;
 }
 
-.form-column-with-margin {
-    margin-left: 20px;
-}
-
-.link-container {
-    flex: 1;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-input[type="text"], select, .p-spinner, .p-inputnumber {
+input[type="text"], select, .p-inputnumber {
     width: 100%;
-    padding: 2%;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     margin-bottom: 20px;
-}
-
-.button-container, #myForm {
-    text-align: center;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .custom-button {
-    background-color: var(--surface-800);
-    color: var(--primary-color-text);
-}
-
-.custom-spinner .ui-spinner-button {
-    background-color: var(--surface-800) !important;
-    color: var(--primary-color-text) !important;
-}
-
-.custom-spinner .ui-spinner-button:hover {
-    background-color: var(--surface-700) !important; /* Немного светлее для hover эффекта */
-}
-
-/* Стилизация p:spinner для соответствия размерам стрелочек PrimeFaces */
-.custom-spinner .ui-spinner {
-    width: auto; /* Автоматический размер для обертки, чтобы подстроиться под содержимое */
-}
-
-.custom-spinner .ui-spinner-input {
-    width: calc(100% - 2.5em); /* Рассчитываем ширину, вычитая размер кнопок */
-    height: 2.25em; /* Высота, соответствующая высоте кнопок */
-    padding: 0.5em; /* Добавляем немного внутренних отступов */
-    border: 1px solid #ccc; /* Граница для поля ввода */
-    border-radius: 0.25em; /* Скругление углов для поля ввода */
-    line-height: 1.25em; /* Высота линИИ ТЕКСТА */
-    text-align: center; /* Центрирование текста */
-
-}
-
-.custom-spinner .ui-spinner-button {
-    width: 1.25em; /* Задаем фиксированную ширину для кнопок */
-    height: 1.25em; /* Задаем фиксированную высоту для кнопок */
-    margin: 0; /* Убираем внешние отступы */
-    border-radius: 0; /* Убираем скругление углов для кнопок */
-}
-
-.custom-spinner .ui-spinner-up,
-.custom-spinner .ui-spinner-down {
-    font-size: 0.75em; /* Уменьшаем размер иконки стрелки */
-}
-
-/* Применение цвета surface-800 */
-.custom-spinner .ui-spinner-button {
-    background-color: var(--surface-800) !important;
-    border-color: var(--surface-800) !important;
-}
-
-.custom-spinner .ui-spinner-button:hover {
-    background-color: var(--surface-700) !important; /* Светлее для эффекта наведения */
-}
-
-.custom-spinner .ui-spinner-up,
-.custom-spinner .ui-spinner-down {
-    color: var(--primary-color-text) !important;
-}
-
-/* Стилизация кнопок отправки и удаления */
-.custom-button {
-    background-color: var(--surface-800) !important; /* Фоновый цвет кнопок */
-    color: var(--primary-color-text) !important; /* Цвет текста кнопок */
-    border: none; /* Убираем границу */
-    padding: 0.5em 1em; /* Внутренние отступы */
-    border-radius: 0.25em; /* Скругление углов */
-    font-size: 1em; /* Размер шрифта */
-    cursor: pointer; /* Курсор в виде указателя */
-    transition: background-color 0.2s; /* Плавное изменение фона при наведении */
+    background-color: #757575;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
-    background-color: var(--surface-700) !important; /* Цвет фона кнопки при наведении */
+    background-color: #616161;
 }
+
+.button-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.graph-cell {
+    vertical-align: center;
+    text-align: center;
+}
+
+.form-container {
+    text-align: left;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    max-width: 900px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    gap: 20px; /* Расстояние между колонками */
+}
+
+.graph-cell, .form-cell {
+    padding: 10px; /* Отступы внутри ячеек */
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Одна колонка на узких экранах */
+    }
+}
+
+a {
+    color: #007bff; /* Основной цвет ссылок */
+    text-decoration: none; /* Убрать подчеркивание */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+a:hover, a:focus {
+    color: #0056b3; /* Цвет при наведении и фокусе */
+    text-decoration: underline; /* Добавить подчеркивание при наведении */
+}
+
+a:active {
+    color: #004085; /* Цвет при нажатии */
+}
+
+/* Стиль ссылки с иконкой */
+.link-with-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.link-with-icon::before {
+    content: '🔗'; /* Иконка перед ссылкой */
+    margin-right: 5px;
+}
+
+/* Стиль ссылки с анимацией */
+.animated-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background-color: #007bff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.animated-link:hover::after {
+    transform: scaleX(1);
+}
+

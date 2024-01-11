@@ -2,3 +2,13 @@ svg {
     border: 1px solid #ccc;
     border-radius: 50%;
 }
+
+#clock {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#form {
+    display: inline-block;
+    margin-left: 20px;
+}
