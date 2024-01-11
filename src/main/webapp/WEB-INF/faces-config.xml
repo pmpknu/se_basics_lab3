@@ -21,7 +21,7 @@
     </navigation-rule>
     <managed-bean>
     <managed-bean-name>pointBean</managed-bean-name>
-    <managed-bean-class>web.points.PointBean</managed-bean-class>
+    <managed-bean-class>web.beans.PointBean</managed-bean-class>
     <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
     <managed-bean>

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
     id 'war'
 }
 
@@ -31,4 +32,17 @@ dependencies {
     implementation('com.fasterxml.jackson.core:jackson-databind:2.12.1')
     implementation('org.postgresql:postgresql:42.6.0')
     implementation('org.primefaces:primefaces:13.0.0:jakarta')
+
+    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
