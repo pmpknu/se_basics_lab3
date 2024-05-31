@@ -92,6 +92,14 @@ task buildPreviousRevisions {
                 revisionDir.mkdirs()
             }
 
+            // Checkout if directory created
+            if (revisionDir.exists()) {
+                println "Revision directory created: ${revisionDir}"
+            } else {
+                println "Failed to create revision directory: ${revisionDir}"
+                return
+            }
+
             // Checkout the specific revision
             println "Checking out revision: ${rev}"
             def checkoutProcess = "git checkout ${rev}".execute([], projectDir)
@@ -153,7 +161,6 @@ task buildPreviousRevisions {
                 println "Contents of the revision directory after build:"
                 libsDir.eachFile { file ->
                     println file.name
-                    buildedWarFile = file.name
                 }
             } else {
                 println "Revision directory not found or not a directory"
