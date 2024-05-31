@@ -64,3 +64,63 @@ task playSound {
 }
 
 build.finalizedBy(playSound)
+
+task getPreviousRevisions {
+    doLast {
+        def process = "git rev-list --max-count=4 HEAD".execute()
+        process.waitFor()
+        def revisions = process.in.text.readLines()
+        file('revisions.txt').text = revisions.join('\n')
+    }
+}
+
+task buildPreviousRevisions {
+    dependsOn getPreviousRevisions
+
+    doLast {
+        def revisions = file('revisions.txt').readLines()
+        def projectDir = project.projectDir
+        def buildDir = new File(project.buildDir, 'previous-builds')
+
+        if (!buildDir.exists()) {
+            buildDir.mkdirs()
+        }
+
+        revisions.each { rev ->
+            def revisionDir = new File(buildDir, rev)
+            if (!revisionDir.exists()) {
+                revisionDir.mkdirs()
+            }
+
+            // Checkout the specific revision
+            "git checkout ${rev}".execute([], projectDir).waitFor()
+
+            // Build the project
+            def buildProcess = "gradle clean build".execute([], projectDir)
+            buildProcess.consumeProcessOutput(System.out, System.err)
+            buildProcess.waitFor()
+
+            // Move the WAR file to the revision directory
+            def warFile = file("${project.buildDir}/libs/${project.name}-${project.version}.war")
+            if (warFile.exists()) {
+                warFile.renameTo(new File(revisionDir, "${project.name}-${rev}.war"))
+            }
+
+            // Reset to the original HEAD
+            "git reset --hard HEAD".execute([], projectDir).waitFor()
+        }
+    }
+}
+
+task zipPreviousBuilds(type: Zip) {
+    dependsOn buildPreviousRevisions
+    from("${project.buildDir}/previous-builds") {
+        include '**/*.war'
+    }
+    archiveFileName = 'previous-builds.zip'
+    destinationDirectory = file("${project.buildDir}")
+}
+
+task team {
+    dependsOn zipPreviousBuilds
+}
