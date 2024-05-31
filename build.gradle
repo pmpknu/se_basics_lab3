@@ -99,6 +99,10 @@ task buildPreviousRevisions {
                 println "Failed to create revision directory: ${revisionDir}"
                 return
             }
+        }
+
+        revisions.each { rev ->
+           
 
             // Checkout the specific revision
             println "Checking out revision: ${rev}"
@@ -191,4 +195,28 @@ task zipPreviousBuilds(type: Zip) {
 
 task team {
     dependsOn zipPreviousBuilds
+}
+
+task createPrevDir {
+    def revisions = file('revisions.txt').readLines()
+
+    def buildDir = new File(project.buildDir, 'previous-builds')
+    if (!buildDir.exists()) {
+        buildDir.mkdirs()
+    }
+
+    revisions.each { rev ->
+        def revisionDir = new File(buildDir, rev)
+        if (!revisionDir.exists()) {
+            revisionDir.mkdirs()
+        }
+
+        // Checkout if directory created
+        if (revisionDir.exists()) {
+            println "Revision directory created: ${revisionDir}"
+        } else {
+            println "Failed to create revision directory: ${revisionDir}"
+            return
+        }
+    }
 }
