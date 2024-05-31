@@ -1,16 +1,14 @@
 import java.awt.Toolkit
-import org.ajoberstar.grgit.Grgit
-import org.ajoberstar.grgit.operation.LogOp
 
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.22'
     id 'war'
-    id 'org.ajoberstar.grgit' version '4.1.0'
+    id 'net.nemerosa.versioning' version '2.4.0'
 }
 
 group = 'web'
-version = '1.0-SNAPSHOT'
+version = versioning.info.full
 
 repositories {
     mavenCentral()
@@ -41,8 +39,6 @@ dependencies {
     implementation('org.primefaces:primefaces:13.0.0:jakarta')
 
     implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
-
-    implementation 'org.ajoberstar.grgit:grgit-core:4.1.0'
 }
 
 compileKotlin {
