@@ -102,7 +102,7 @@ task buildPreviousRevisions {
         }
 
         revisions.each { rev ->
-           
+            def revisionDir = new File(buildDir, rev)
 
             // Checkout the specific revision
             println "Checking out revision: ${rev}"
