@@ -93,21 +93,71 @@ task buildPreviousRevisions {
             }
 
             // Checkout the specific revision
-            "git checkout ${rev}".execute([], projectDir).waitFor()
+            println "Checking out revision: ${rev}"
+            def checkoutProcess = "git checkout ${rev}".execute([], projectDir)
+            checkoutProcess.waitFor()
+            println checkoutProcess.in.text
+            println checkoutProcess.err.text
+
+            if (checkoutProcess.exitValue() != 0) {
+                println "Failed to checkout revision: ${rev}"
+                return
+            }
+
+            // Change the version dynamically based on the revision
+            project.version = rev
 
             // Build the project
+            println "Building revision: ${rev}"
             def buildProcess = "gradle clean build".execute([], projectDir)
             buildProcess.consumeProcessOutput(System.out, System.err)
             buildProcess.waitFor()
 
-            // Move the WAR file to the revision directory
-            def warFile = file("${project.buildDir}/libs/${project.name}-${project.version}.war")
+            if (buildProcess.exitValue() != 0) {
+                println "Failed to build revision: ${rev}"
+                return
+            }
+
+            def buildedWarFile
+            // Check contents of the libs directory
+            def libsDir = new File("${project.buildDir}/libs")
+            if (libsDir.exists() && libsDir.isDirectory()) {
+                println "Contents of the libs directory after build:"
+                libsDir.eachFile { file ->
+                    println file.name
+                    buildedWarFile = file.name
+                }
+            } else {
+                println "libs directory not found or not a directory"
+            }
+
+            // Define the expected WAR file name
+            println("build dir: ${project.buildDir}")
+            println("project name: ${project.name}")
+            println("project vers: ${project.version}")
+            println("version ${version}")
+            //def warFileName = "${project.name}-${rev}.war"
+            def warFileName = buildedWarFile
+            def warFile = new File(libsDir, warFileName)
+            println "Looking for WAR file: ${warFile}"
+
             if (warFile.exists()) {
-                warFile.renameTo(new File(revisionDir, "${project.name}-${rev}.war"))
+                warFile.renameTo(new File(revisionDir, warFileName))
+                println "WAR file for revision ${rev} moved to ${revisionDir}"
+            } else {
+                println "WAR file not found for revision: ${rev}"
             }
 
             // Reset to the original HEAD
-            "git reset --hard HEAD".execute([], projectDir).waitFor()
+            def resetProcess = "git reset --hard HEAD".execute([], projectDir)
+            resetProcess.waitFor()
+            println resetProcess.in.text
+            println resetProcess.err.text
+
+            if (resetProcess.exitValue() != 0) {
+                println "Failed to reset to original HEAD"
+                return
+            }
         }
     }
 }
