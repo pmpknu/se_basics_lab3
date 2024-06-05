@@ -19,26 +19,33 @@ compileJava {
     targetCompatibility = JavaVersion.toVersion(targetCompatibilityVersion)
 }
 
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = encoding
 }
 
 dependencies {
-    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
-    compileOnly('jakarta.validation:jakarta.validation-api:3.0.2')
-    compileOnly('jakarta.ejb:jakarta.ejb-api:4.0.1')
-    compileOnly('jakarta.faces:jakarta.faces-api:3.0.0')
-    compileOnly('jakarta.servlet:jakarta.servlet-api:6.0.0')
-    compileOnly('jakarta.persistence:jakarta.persistence-api:3.1.0')
-    compileOnly('jakarta.platform:jakarta.jakartaee-web-api:10.0.0')
-    compileOnly('jakarta.json:jakarta.json-api:2.1.1')
-    compileOnly('jakarta.json.bind:jakarta.json.bind-api:3.0.0')
+    compileOnly jakartaEnterpriseCdiApi
+    compileOnly jakartaValidationApi
+    compileOnly jakartaEjbApi
+    compileOnly jakartaFacesApi
+    compileOnly jakartaServletApi
+    compileOnly jakartaPersistenceApi
+    compileOnly jakartaEeWebApi
+    compileOnly jakartaJsonApi
+    compileOnly jakartaJsonBindApi
 
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.12.1')
-    implementation('org.postgresql:postgresql:42.6.0')
-    implementation('org.primefaces:primefaces:13.0.0:jakarta')
+    implementation jacksonDatabind
+    implementation postgresql
+    implementation primefaces
+    implementation kotlinStdlib
 
-    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+    testImplementation junitApi
+    testRuntimeOnly junitEngine
 }
 
 compileKotlin {
@@ -54,6 +61,10 @@ compileTestKotlin {
 
 task compile {
     compileKotlin
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task playSound {
