@@ -13,7 +13,6 @@ check_error() {
 
 echo "Удаление старого архива, если существует."
 rm -f $ZIP_FILE
-check_error "не удалось удалить старый архив."
 
 echo "Получение последних 4 ревизий."
 REVISIONS=$(git log -n 4 --pretty=format:"%H")
@@ -33,17 +32,19 @@ do
 
   echo "Удаление старой директории build/libs."
   rm -r build/libs
-  check_error "не удалось удалить директорию build/libs."
 
   echo "Сборка проекта с помощью Gradle."
   ./gradlew build
-  check_error "сборка проекта завершилась неудачей."
+  if [ $? -ne 0 ]; then
+    echo "сборка проекта завершилась неудачей."
+    continue
+  fi
 
   echo "Поиск WAR файла."
   WAR_FILE=$(find . -name "*.war" | head -n 1)
   if [ -z "$WAR_FILE" ]; then
     echo "Ошибка: не найдено WAR файл."
-    exit 1
+    continue 
   fi
 
   echo "Копирование $WAR_FILE в $BUILD_DIR."
