@@ -48,4 +48,3 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "builds.zip"
         target: "se-basics-3" 
-        strip_components: 2
