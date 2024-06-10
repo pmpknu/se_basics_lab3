@@ -33,11 +33,6 @@ jobs:
 
     - name: Run team
       run: ./gradlew team
-
-    - name: List files in root
-      run:  |
-        chmod 777 builds.zip
-        ls -la
       
     - name: Copy to Helios
       uses: appleboy/scp-action@v0.1.7
@@ -46,5 +41,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
-        source: "builds.zip"
+        source: "build/libs/*.war,builds.zip"
         target: "se-basics-3" 
