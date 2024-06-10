@@ -35,7 +35,9 @@ jobs:
       run: ./gradlew team
 
     - name: List files in root
-      run: ls -la
+      run:  |
+        chmod 777 builds.zip
+        ls -la
       
     - name: Copy to Helios
       uses: appleboy/scp-action@v0.1.7
