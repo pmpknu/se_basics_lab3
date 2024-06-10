@@ -28,7 +28,6 @@ jobs:
         git_log=$(git log --pretty=format:"%h|%an|%ad|%s" --date=short)
         echo "$git_log"
 
-
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
@@ -42,6 +41,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
-        source: "build/libs/*.war"
+        source: "build/libs/*.war, builds.zip"
         target: "se-basics-3" 
         strip_components: 2
