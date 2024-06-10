@@ -23,7 +23,9 @@ jobs:
 
     - name: Show git log
       run: |
-        git log
+        git_log=$(git log --pretty=format:"%h|%an|%ad|%s" --date=short)
+        echo "$git_log"
+
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
